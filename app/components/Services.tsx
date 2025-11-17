@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -65,8 +66,12 @@ export default function Services() {
   const displayedServices = showAll ? services : services.slice(0, 6);
 
   return (
-    <section id="services" className="py-20 lg:py-28 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="services" className="py-20 lg:py-28 bg-gray-50 relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-60">
+        <div className="absolute top-16 left-24 h-32 w-32 rounded-full blur-3xl" style={{ backgroundColor: 'rgba(161,195,73,0.25)' }} />
+        <div className="absolute bottom-10 right-32 h-32 w-40 rounded-full blur-3xl" style={{ backgroundColor: 'rgba(36,48,16,0.15)' }} />
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-12">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-12 bg-gray-300"></div>
@@ -81,14 +86,29 @@ export default function Services() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12">
-          {displayedServices.map((service, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-xl p-6 border border-gray-200 hover:shadow-md transition-all duration-300"
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--color-brand)'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = ''}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-12"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.08 },
+            },
+          }}
+        >
+          {displayedServices.map((service) => (
+            <motion.div
+              key={service.title}
+              className="group bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all duration-500 relative overflow-hidden"
+              variants={{
+                hidden: { opacity: 0, y: 40 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+              }}
+              whileHover={{ y: -8 }}
             >
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" style={{ background: 'linear-gradient(135deg, rgba(36,48,16,0.04), rgba(161,195,73,0.05))' }}></div>
               <div>
                 <div className="mb-6">
                   <div className="w-14 h-14 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg group-hover:scale-110 transition-all duration-300" style={{ backgroundColor: 'var(--color-brand)', border: '1px solid var(--color-brand-dark)' }}>
@@ -113,24 +133,24 @@ export default function Services() {
                   </Link>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {!showAll && (
           <div className="text-center">
-            <button
+            <motion.button
               onClick={() => setShowAll(true)}
-              className="inline-flex items-center px-8 py-4 text-white rounded-xl font-heading font-semibold transition-all transform hover:scale-105 shadow-lg hover:shadow-xl"
+              className="inline-flex items-center px-8 py-4 text-white rounded-xl font-heading font-semibold transition-all transform shadow-lg hover:shadow-2xl"
               style={{ background: 'linear-gradient(to right, var(--color-brand), var(--color-brand-dark))' }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'linear-gradient(to right, var(--color-brand-dark), var(--color-primary-dark))'}
-              onMouseLeave={(e) => e.currentTarget.style.background = 'linear-gradient(to right, var(--color-brand), var(--color-brand-dark))'}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.98 }}
             >
               View All Services
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
               </svg>
-            </button>
+            </motion.button>
           </div>
         )}
       </div>

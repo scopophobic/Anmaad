@@ -1,13 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const progress = docHeight ? (scrollTop / docHeight) * 100 : 0;
+
+      setIsScrolled(scrollTop > 10);
+      setScrollProgress(progress);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 left-0 right-0 z-50 bg-white border-b border-gray-200">
+    <header
+      className={`sticky top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+        isScrolled
+          ? 'bg-white/80 backdrop-blur-lg border-transparent shadow-[0_15px_40px_rgba(36,48,16,0.07)]'
+          : 'bg-white border-gray-200'
+      }`}
+    >
       <nav className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
@@ -70,6 +95,10 @@ export default function Header() {
           </div>
         )}
       </nav>
+      <div
+        className="h-0.5 w-full origin-left scale-x-100 transition-[width] duration-200"
+        style={{ width: `${scrollProgress}%`, backgroundColor: 'var(--color-brand)' }}
+      />
     </header>
   );
 }

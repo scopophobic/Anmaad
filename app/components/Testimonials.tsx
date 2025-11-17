@@ -1,5 +1,8 @@
 'use client';
 
+import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
 const testimonials = [
   {
     name: 'Rajesh Kumar',
@@ -32,9 +35,27 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % testimonials.length);
+    }, 6000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const prevSlide = () => {
+    setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  };
+
+  const nextSlide = () => {
+    setCurrent((prev) => (prev + 1) % testimonials.length);
+  };
+
   return (
-    <section className="py-20 lg:py-28 bg-gray-50">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 lg:py-28 bg-gray-50 relative">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-12 bg-gray-300"></div>
@@ -49,19 +70,40 @@ export default function Testimonials() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-12 max-w-6xl mx-auto">
-          {testimonials.map((testimonial, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-3xl p-10 lg:p-12 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:-translate-y-3 border border-gray-200 relative overflow-hidden"
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--color-primary-lighter)'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = ''}
+        <div className="max-w-4xl mx-auto relative">
+          <button
+            aria-label="Previous testimonial"
+            onClick={prevSlide}
+            className="hidden md:flex absolute left-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-700 hover:text-white hover:bg-brand transition-all items-center justify-center shadow-md z-20"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            aria-label="Next testimonial"
+            onClick={nextSlide}
+            className="hidden md:flex absolute right-0 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-gray-200 bg-white text-gray-700 hover:text-white hover:bg-brand transition-all items-center justify-center shadow-md z-20"
+          >
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={testimonials[current].name}
+              className="group bg-white rounded-3xl p-10 lg:p-12 shadow-lg border border-gray-200 relative overflow-hidden"
+              initial={{ opacity: 0, y: 30, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -30, scale: 0.97 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
             >
-              <div className="absolute top-0 right-0 w-32 h-32 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-bl-full" style={{ backgroundColor: 'var(--color-primary-lighter)' }}></div>
-              
+              <div className="absolute top-0 right-0 w-32 h-32 opacity-40 rounded-bl-full" style={{ backgroundColor: 'var(--color-primary-lighter)' }}></div>
+
               <div className="relative z-10">
                 <div className="flex items-center mb-8">
-                  {[...Array(testimonial.rating)].map((_, i) => (
+                  {[...Array(testimonials[current].rating)].map((_, i) => (
                     <svg
                       key={i}
                       className="w-7 h-7"
@@ -73,26 +115,37 @@ export default function Testimonials() {
                     </svg>
                   ))}
                 </div>
-                
+
                 <div className="mb-8">
                   <svg className="w-14 h-14 mb-4" fill="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-primary-lighter)', opacity: 0.5 }}>
                     <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.996 2.151c-3.313.772-5.996 3.549-5.996 7.003 0 2.689 1.17 5.143 3.017 6.849v5.849h-9.999zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-3.313.772-5.996 3.549-5.996 7.003 0 2.689 1.17 5.143 3.017 6.849v5.849h-10.017z" />
                   </svg>
                 </div>
-                
+
                 <p className="text-gray-700 mb-8 leading-relaxed text-lg italic">
-                  "{testimonial.content}"
+                  &ldquo;{testimonials[current].content}&rdquo;
                 </p>
-                
+
                 <div className="pt-6 border-t border-gray-100">
-                  <p className="font-bold text-gray-900 text-lg mb-1">{testimonial.name}</p>
+                  <p className="font-bold text-gray-900 text-lg mb-1">{testimonials[current].name}</p>
                   <p className="text-sm text-gray-600 font-medium">
-                    {testimonial.role}, {testimonial.company}
+                    {testimonials[current].role}, {testimonials[current].company}
                   </p>
                 </div>
               </div>
-            </div>
-          ))}
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex items-center justify-center gap-3 mt-12 flex-wrap">
+            {testimonials.map((testimonial, index) => (
+              <button
+                key={testimonial.name}
+                onClick={() => setCurrent(index)}
+                aria-label={`View testimonial from ${testimonial.name}`}
+                className={`h-3 rounded-full transition-all ${current === index ? 'w-7 bg-brand' : 'w-3 bg-gray-300 hover:bg-gray-400'}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

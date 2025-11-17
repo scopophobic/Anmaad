@@ -38,7 +38,7 @@ export default function Contact() {
             Get In <span style={{ color: 'var(--color-brand)' }}>Touch</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.
+            Have questions? We&apos;d love to hear from you. Send us a message and we&apos;ll respond as soon as possible.
           </p>
         </div>
 

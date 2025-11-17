@@ -30,7 +30,7 @@ export default function About() {
               </p>
               
               <p className="text-gray-700 leading-relaxed text-lg font-heading">
-                Clients trust ANMAAD for our commitment to accuracy, timely service delivery, transparent communication, and personalized attention to their unique business requirements. We build long-term relationships based on trust, integrity, and results. Whether you're a startup, growing business, or established enterprise, we're here to support your financial journey every step of the way.
+                Clients trust ANMAAD for our commitment to accuracy, timely service delivery, transparent communication, and personalized attention to their unique business requirements. We build long-term relationships based on trust, integrity, and results. Whether you&apos;re a startup, growing business, or established enterprise, we&apos;re here to support your financial journey every step of the way.
               </p>
             </div>
           </div>

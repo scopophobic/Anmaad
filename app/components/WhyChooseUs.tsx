@@ -1,5 +1,7 @@
 'use client';
 
+import { motion } from 'framer-motion';
+
 const features = [
   {
     title: 'Expert Team',
@@ -28,15 +30,21 @@ const features = [
 ];
 
 const FeatureIcon = ({ children }: { children: React.ReactNode }) => (
-  <div className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300" style={{ backgroundColor: 'var(--color-brand)', border: '1px solid var(--color-brand-dark)' }}>
+  <div
+    className="w-16 h-16 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:rotate-3 transition-all duration-300"
+    style={{ backgroundColor: 'var(--color-brand)', border: '1px solid var(--color-brand-dark)' }}
+  >
     {children}
   </div>
 );
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 lg:py-28 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="py-20 lg:py-28 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-50">
+        <div className="absolute top-12 right-24 h-40 w-40 rounded-full blur-[120px]" style={{ backgroundColor: 'rgba(135,163,48,0.3)' }} />
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-12 bg-gray-300"></div>
@@ -51,13 +59,27 @@ export default function WhyChooseUs() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.1 },
+            },
+          }}
+        >
           {features.map((feature, index) => (
-            <div
-              key={index}
-              className="group bg-white rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-all duration-300"
-              onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--color-brand)'}
-              onMouseLeave={(e) => e.currentTarget.style.borderColor = ''}
+            <motion.div
+              key={feature.title}
+              className="group bg-white rounded-xl p-8 border border-gray-200 hover:shadow-2xl transition-all duration-500"
+              variants={{
+                hidden: { opacity: 0, y: 40, scale: 0.97 },
+                visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+              }}
+              whileHover={{ y: -8 }}
             >
               <div>
                 <div className="mb-6">
@@ -103,9 +125,9 @@ export default function WhyChooseUs() {
                 {feature.description}
               </p>
             </div>
-          </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

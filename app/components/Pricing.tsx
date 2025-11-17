@@ -1,5 +1,6 @@
 'use client';
 
+import { motion } from 'framer-motion';
 import Link from 'next/link';
 
 const plans = [
@@ -59,8 +60,11 @@ const plans = [
 
 export default function Pricing() {
   return (
-    <section id="pricing" className="py-20 lg:py-28 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="pricing" className="py-20 lg:py-28 bg-white relative overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none opacity-40">
+        <div className="absolute left-10 top-20 w-40 h-40 rounded-full blur-[150px]" style={{ backgroundColor: 'rgba(161,195,73,0.45)' }} />
+      </div>
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 mb-4">
             <div className="h-px w-12 bg-gray-300"></div>
@@ -75,10 +79,21 @@ export default function Pricing() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto">
-          {plans.map((plan, index) => (
-            <div
-              key={index}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.25 }}
+          variants={{
+            hidden: {},
+            visible: {
+              transition: { staggerChildren: 0.12 },
+            },
+          }}
+        >
+          {plans.map((plan) => (
+            <motion.div
+              key={plan.name}
               className={`relative bg-white rounded-3xl p-10 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 border ${
                 plan.popular 
                   ? 'scale-105 md:scale-110' 
@@ -87,6 +102,10 @@ export default function Pricing() {
               style={plan.popular ? { borderColor: 'var(--color-brand)', boxShadow: '0 0 0 2px var(--color-primary-lighter)' } : {}}
               onMouseEnter={(e) => !plan.popular && (e.currentTarget.style.borderColor = 'var(--color-brand)')}
               onMouseLeave={(e) => !plan.popular && (e.currentTarget.style.borderColor = '')}
+              variants={{
+                hidden: { opacity: 0, y: 50 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } },
+              }}
             >
               {plan.popular && (
                 <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
@@ -131,13 +150,13 @@ export default function Pricing() {
               >
                 {plan.cta}
               </Link>
-            </div>
+                </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         <div className="mt-16 text-center">
           <p className="text-gray-600 font-heading mb-4">
-            Need a custom solution? We're here to help.
+            Need a custom solution? We&apos;re here to help.
           </p>
           <Link
             href="#contact"
