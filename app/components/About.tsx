@@ -1,8 +1,8 @@
 export default function About() {
   return (
-    <section id="about" className="py-20 lg:py-28 bg-white">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
+    <section id="about" className="py-20 lg:py-28 bg-white relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <div className="inline-flex items-center gap-2 mb-4">
               <div className="h-px w-12 bg-gray-300"></div>

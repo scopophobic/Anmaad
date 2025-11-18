@@ -37,7 +37,7 @@ export default function Hero() {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
         <motion.div
-          className="grid lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto"
+          className="max-w-5xl mx-auto"
           initial="hidden"
           animate="visible"
           variants={{
@@ -75,20 +75,20 @@ export default function Hero() {
               </Link>
             </motion.div>
 
-            <motion.div className="grid sm:grid-cols-2 gap-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.8 }}>
-              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 mb-4">Core Solutions</p>
+            <motion.div className="grid sm:grid-cols-2 gap-12 pt-6 border-t border-gray-200" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.8 }}>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500 mb-4">Core Solutions</p>
                 <ul className="space-y-3">
                   {coreServices.slice(0, 6).map((item) => (
                     <li key={item} className="flex items-start gap-3 text-gray-800">
-                      <span className="mt-1 w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-brand)' }} />
+                      <span className="mt-1 w-1.5 h-1.5 rounded-full" style={{ backgroundColor: 'var(--color-brand)' }} />
                       <span className="font-medium">{item}</span>
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 mb-4">Why Businesses Trust ANMAAD</p>
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-gray-500 mb-4">Why Businesses Trust ANMAAD</p>
                 <ul className="space-y-3">
                   {trustPoints.map((point) => (
                     <li key={point} className="flex items-start gap-3 text-gray-800">
@@ -102,58 +102,6 @@ export default function Hero() {
               </div>
             </motion.div>
           </div>
-
-          <motion.div
-            className="relative hidden lg:block"
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2, duration: 0.9 }}
-          >
-            <motion.div
-              className="absolute inset-0 rounded-[32px]"
-              style={{
-                background: 'linear-gradient(135deg, rgba(135,163,48,0.12), rgba(36,48,16,0.08))',
-              }}
-              animate={{ borderRadius: ['32px', '26px', '32px'] }}
-              transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-            />
-            <div className="relative rounded-[32px] p-12 border border-gray-200 backdrop-blur bg-white/80 shadow-[0_25px_80px_rgba(36,48,16,0.08)]">
-              <motion.div
-                className="grid grid-cols-2 gap-6"
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.3 }}
-                variants={{
-                  hidden: {},
-                  visible: {
-                    transition: { staggerChildren: 0.12 },
-                  },
-                }}
-              >
-                {serviceDetails.slice(0, 4).map((card, index) => (
-                  <motion.div
-                    key={card.id}
-                    className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between min-h-[150px]"
-                    variants={{
-                      hidden: { opacity: 0, y: 25 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.5, delay: index * 0.05 } },
-                    }}
-                    whileHover={{ y: -6, boxShadow: '0px 20px 35px rgba(36,48,16,0.08)' }}
-                  >
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4" style={{ backgroundColor: 'var(--color-primary-lighter)' }}>
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-brand)' }}>
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="text-sm font-semibold text-gray-900">{card.title}</div>
-                      <div className="text-xs text-gray-600 mt-1">{card.summary}</div>
-                    </div>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </motion.div>
         </motion.div>
       </div>
     </section>
