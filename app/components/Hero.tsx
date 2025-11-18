@@ -2,18 +2,15 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import { serviceDetails } from '../lib/serviceContent';
 
-const cardData = [
-  { title: 'GST Filing', subtitle: 'Monthly Returns' },
-  { title: 'Tax Filing', subtitle: 'ITR & TDS' },
-  { title: 'Company Registration', subtitle: 'Pvt Ltd & LLP' },
-  { title: 'Compliance', subtitle: 'Annual Filing' },
-];
+const coreServices = serviceDetails.map((service) => service.title);
 
-const stats = [
-  { value: '500+', label: 'Happy Clients' },
-  { value: '4.8/5', label: 'Average Rating' },
-  { value: '15+', label: 'Years Experience' },
+const trustPoints = [
+  'Highly economical service plans',
+  'Audit-ready, authenticated financial reports',
+  'Transparent, reliable, and timely delivery',
+  'Expert team with multi-industry experience',
 ];
 
 export default function Hero() {
@@ -49,33 +46,15 @@ export default function Hero() {
           }}
         >
           <div>
-            <motion.h1
-              className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6 leading-tight"
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            >
-              <span style={{ color: 'var(--color-brand)' }}>ANMAAD</span> - Your trusted partner for{' '}
-              <span style={{ color: 'var(--color-brand)' }}>accounting, tax & business compliance</span>
+            <motion.h1 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-gray-900 mb-6 leading-tight" initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}>
+              Welcome to <span style={{ color: 'var(--color-brand)' }}>ANMAAD</span> — Your Trusted Accounting & Compliance Partner
             </motion.h1>
 
-            <motion.p
-              className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.8 }}
-            >
-              Turn your business idea into reality with us! From company registration to expert accounting,
-              tax filing, legal compliance, and business services — we make business simple, seamless, and
-              stress-free for startups, SMEs, and enterprises across India.
+            <motion.p className="text-lg text-gray-600 mb-8 leading-relaxed max-w-2xl" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2, duration: 0.8 }}>
+              We deliver reliable accounting, bookkeeping, compliance, Tally automation, payroll, and export documentation services backed by a deep understanding of Indian Accounting Standards and government regulations. Stay compliant, organized, and financially strong with a partner that scales with you.
             </motion.p>
 
-            <motion.div
-              className="flex flex-col sm:flex-row gap-4 mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.8 }}
-            >
+            <motion.div className="flex flex-col sm:flex-row gap-4 mb-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3, duration: 0.8 }}>
               <Link
                 href="#contact"
                 className="inline-flex items-center justify-center px-8 py-4 text-white rounded-lg font-heading font-semibold transition-all shadow-lg hover:shadow-xl hover:-translate-y-0.5"
@@ -89,47 +68,38 @@ export default function Hero() {
                 </svg>
               </Link>
               <Link
-                href="#services"
+                href="/services"
                 className="inline-flex items-center justify-center px-8 py-4 bg-white text-gray-900 border-2 border-gray-200 rounded-lg font-heading font-semibold transition-all hover:border-brand hover:text-brand hover:-translate-y-0.5"
               >
-                Our Services
+                View Detailed Services
               </Link>
             </motion.div>
 
-            <motion.div
-              className="flex flex-wrap items-center gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-            >
-              {stats.map((stat) => (
-                <motion.div
-                  key={stat.label}
-                  className="min-w-[120px]"
-                  whileHover={{ y: -4 }}
-                  transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-                >
-                  <div className="text-3xl font-bold text-gray-900 mb-1">{stat.value}</div>
-                  <div className="text-sm text-gray-600">{stat.label}</div>
-                </motion.div>
-              ))}
-              <motion.div
-                className="flex items-center gap-2"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 20 }}
-              >
-                <div className="flex">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                    </svg>
+            <motion.div className="grid sm:grid-cols-2 gap-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.35, duration: 0.8 }}>
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 mb-4">Core Solutions</p>
+                <ul className="space-y-3">
+                  {coreServices.slice(0, 6).map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-gray-800">
+                      <span className="mt-1 w-2 h-2 rounded-full" style={{ backgroundColor: 'var(--color-brand)' }} />
+                      <span className="font-medium">{item}</span>
+                    </li>
                   ))}
-                </div>
-                <div>
-                  <div className="text-lg font-semibold text-gray-900">4.8/5</div>
-                  <div className="text-xs text-gray-600">Ratings</div>
-                </div>
-              </motion.div>
+                </ul>
+              </div>
+              <div className="bg-white rounded-2xl border border-gray-200 p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500 mb-4">Why Businesses Trust ANMAAD</p>
+                <ul className="space-y-3">
+                  {trustPoints.map((point) => (
+                    <li key={point} className="flex items-start gap-3 text-gray-800">
+                      <svg className="w-4 h-4 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" style={{ color: 'var(--color-brand)' }}>
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span className="font-medium">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </motion.div>
           </div>
 
@@ -160,9 +130,9 @@ export default function Hero() {
                   },
                 }}
               >
-                {cardData.map((card, index) => (
+                {serviceDetails.slice(0, 4).map((card, index) => (
                   <motion.div
-                    key={card.title}
+                    key={card.id}
                     className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 flex flex-col justify-between min-h-[150px]"
                     variants={{
                       hidden: { opacity: 0, y: 25 },
@@ -177,7 +147,7 @@ export default function Hero() {
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-gray-900">{card.title}</div>
-                      <div className="text-xs text-gray-600 mt-1">{card.subtitle}</div>
+                      <div className="text-xs text-gray-600 mt-1">{card.summary}</div>
                     </div>
                   </motion.div>
                 ))}

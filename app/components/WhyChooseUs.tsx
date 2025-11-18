@@ -4,28 +4,24 @@ import { motion } from 'framer-motion';
 
 const features = [
   {
-    title: 'Expert Team',
-    description: 'Qualified professionals with extensive experience in accounting and taxation. Our team of CAs and tax experts brings decades of combined expertise.',
+    title: 'Highly Economical Plans',
+    description:
+      'Choose flexible engagement models that deliver enterprise-grade accounting and compliance without inflating overheads.',
   },
   {
-    title: 'Accurate & Timely',
-    description: 'Precision in every calculation and commitment to meeting deadlines. We ensure zero errors and on-time delivery of all services.',
+    title: 'Audit-Ready Documentation',
+    description:
+      'Every ledger, report, and statutory filing is validated and authenticated so you are inspection-ready at a moment’s notice.',
   },
   {
-    title: 'Transparent Pricing',
-    description: 'Clear, upfront pricing with no hidden charges or surprises. You know exactly what you\'re paying for with detailed cost breakdowns.',
+    title: 'Transparent & Timely Delivery',
+    description:
+      'Upfront scopes, proactive communication, and on-time milestones keep you informed and confident from day one.',
   },
   {
-    title: 'Quick Support',
-    description: 'Responsive customer service to address your queries promptly. Dedicated account managers ensure your concerns are resolved quickly.',
-  },
-  {
-    title: 'Compliance Assurance',
-    description: 'Stay compliant with all regulations and avoid penalties. Proactive monitoring ensures your business remains in good standing.',
-  },
-  {
-    title: 'Technology-Driven',
-    description: 'Modern tools and software for efficient and secure service delivery. Cloud-based solutions for real-time access to your financial data.',
+    title: 'Expert, Multi-Industry Team',
+    description:
+      'Leverage specialists who understand manufacturing, services, D2C, export, and tech-led businesses across India.',
   },
 ];
 
@@ -60,7 +56,7 @@ export default function WhyChooseUs() {
         </div>
 
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10 max-w-7xl mx-auto"
+          className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
@@ -84,38 +80,28 @@ export default function WhyChooseUs() {
               <div>
                 <div className="mb-6">
                   <FeatureIcon>
-                  {index === 0 && (
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                    </svg>
-                  )}
-                  {index === 1 && (
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  )}
-                  {index === 2 && (
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  )}
-                  {index === 3 && (
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                    </svg>
-                  )}
-                  {index === 4 && (
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                    </svg>
-                  )}
-                  {index === 5 && (
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  )}
-                </FeatureIcon>
-              </div>
+                    {index === 0 && (
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 17l6 3 6-3m-6 3V4.5a1.5 1.5 0 013 0V20" />
+                      </svg>
+                    )}
+                    {index === 1 && (
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 12h14M5 12l3 3m-3-3l3-3" />
+                      </svg>
+                    )}
+                    {index === 2 && (
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M12 20.5a8.5 8.5 0 100-17 8.5 8.5 0 000 17z" />
+                      </svg>
+                    )}
+                    {index === 3 && (
+                      <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 7l9-4 9 4-9 4-9-4zm0 14v-8l9 4 9-4v8l-9 4-9-4z" />
+                      </svg>
+                    )}
+                  </FeatureIcon>
+                </div>
               
               <h3 className="text-2xl font-display font-bold text-gray-900 mb-5 transition-all duration-300" onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-brand-dark)'} onMouseLeave={(e) => e.currentTarget.style.color = ''}>
                 {feature.title}
@@ -124,7 +110,7 @@ export default function WhyChooseUs() {
               <p className="text-gray-600 leading-relaxed font-heading">
                 {feature.description}
               </p>
-            </div>
+              </div>
             </motion.div>
           ))}
         </motion.div>

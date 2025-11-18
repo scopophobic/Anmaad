@@ -47,16 +47,19 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6">
-            <Link href="#services" className="text-gray-700 hover:text-brand font-medium transition-colors">
-              Services
+            <Link href="/#services" className="text-gray-700 hover:text-brand font-medium transition-colors">
+              Services Overview
             </Link>
-            <Link href="#about" className="text-gray-700 hover:text-brand font-medium transition-colors">
+            <Link href="/services" className="text-gray-700 hover:text-brand font-medium transition-colors">
+              Detailed Services
+            </Link>
+            <Link href="/#about" className="text-gray-700 hover:text-brand font-medium transition-colors">
               About
             </Link>
-            <Link href="#pricing" className="text-gray-700 hover:text-brand font-medium transition-colors">
+            <Link href="/#pricing" className="text-gray-700 hover:text-brand font-medium transition-colors">
               Pricing
             </Link>
-            <Link href="#contact" className="bg-brand text-white px-6 py-2 rounded-lg hover:bg-brand-dark transition-colors font-medium" style={{ backgroundColor: 'var(--color-brand)' }}>
+            <Link href="/#contact" className="bg-brand text-white px-6 py-2 rounded-lg hover:bg-brand-dark transition-colors font-medium" style={{ backgroundColor: 'var(--color-brand)' }}>
               Contact
             </Link>
           </div>
@@ -80,16 +83,19 @@ export default function Header() {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <div className="md:hidden py-4 space-y-3 border-t border-gray-200">
-            <Link href="#services" className="block text-gray-700 hover:text-brand font-medium py-2" onClick={() => setIsMenuOpen(false)}>
-              Services
+            <Link href="/#services" className="block text-gray-700 hover:text-brand font-medium py-2" onClick={() => setIsMenuOpen(false)}>
+              Services Overview
             </Link>
-            <Link href="#about" className="block text-gray-700 hover:text-brand font-medium py-2" onClick={() => setIsMenuOpen(false)}>
+            <Link href="/services" className="block text-gray-700 hover:text-brand font-medium py-2" onClick={() => setIsMenuOpen(false)}>
+              Detailed Services
+            </Link>
+            <Link href="/#about" className="block text-gray-700 hover:text-brand font-medium py-2" onClick={() => setIsMenuOpen(false)}>
               About
             </Link>
-            <Link href="#pricing" className="block text-gray-700 hover:text-brand font-medium py-2" onClick={() => setIsMenuOpen(false)}>
+            <Link href="/#pricing" className="block text-gray-700 hover:text-brand font-medium py-2" onClick={() => setIsMenuOpen(false)}>
               Pricing
             </Link>
-            <Link href="#contact" className="block text-white px-6 py-2 rounded-lg transition-colors font-medium text-center" style={{ backgroundColor: 'var(--color-brand)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-brand-dark)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-brand)'} onClick={() => setIsMenuOpen(false)}>
+            <Link href="/#contact" className="block text-white px-6 py-2 rounded-lg transition-colors font-medium text-center" style={{ backgroundColor: 'var(--color-brand)' }} onMouseEnter={(e) => e.currentTarget.style.backgroundColor = 'var(--color-brand-dark)'} onMouseLeave={(e) => e.currentTarget.style.backgroundColor = 'var(--color-brand)'} onClick={() => setIsMenuOpen(false)}>
               Contact
             </Link>
           </div>

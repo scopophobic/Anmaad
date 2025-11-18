@@ -1,59 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { useState } from 'react';
 import Link from 'next/link';
-
-const services = [
-  {
-    title: 'GST Registration & Filing',
-    description: 'Complete GST registration and timely filing services to keep your business compliant with tax regulations.',
-  },
-  {
-    title: 'Income Tax Filing',
-    description: 'Expert assistance with individual and corporate income tax returns, ensuring maximum deductions and compliance.',
-  },
-  {
-    title: 'Company Incorporation',
-    description: 'End-to-end support for private and public company registration with streamlined documentation.',
-  },
-  {
-    title: 'LLP Registration',
-    description: 'Professional Limited Liability Partnership registration services for your business structure needs.',
-  },
-  {
-    title: 'Bookkeeping & Accounting',
-    description: 'Accurate financial record-keeping and accounting services to maintain your business finances.',
-  },
-  {
-    title: 'TDS Filing',
-    description: 'Timely TDS return filing and compliance to avoid penalties and ensure smooth operations.',
-  },
-  {
-    title: 'Partnership Registration',
-    description: 'Complete partnership firm registration with proper documentation and legal compliance.',
-  },
-  {
-    title: 'PAN / TAN Services',
-    description: 'Quick and hassle-free PAN and TAN application and correction services.',
-  },
-  {
-    title: 'MSME Registration',
-    description: 'MSME/Udyam registration to avail government benefits and schemes for your business.',
-  },
-  {
-    title: 'Digital Signature Certificate',
-    description: 'DSC application and renewal services for secure online transactions and document signing.',
-  },
-  {
-    title: 'Professional Tax',
-    description: 'Professional tax registration and filing services for businesses across different states.',
-  },
-  {
-    title: 'Compliance & Audit Support',
-    description: 'Comprehensive compliance management and audit support to keep your business in good standing.',
-  },
-];
+import { serviceDetails } from '../lib/serviceContent';
 
 const ServiceIcon = ({ className }: { className?: string }) => (
   <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -62,9 +11,6 @@ const ServiceIcon = ({ className }: { className?: string }) => (
 );
 
 export default function Services() {
-  const [showAll, setShowAll] = useState(false);
-  const displayedServices = showAll ? services : services.slice(0, 6);
-
   return (
     <section id="services" className="py-20 lg:py-28 bg-gray-50 relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none opacity-60">
@@ -82,7 +28,7 @@ export default function Services() {
             We Provide Best <span style={{ color: 'var(--color-brand)' }}>Quality</span> Services
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
-            Comprehensive accounting, tax, and compliance solutions for your business
+            We provide a wide range of accounting, compliance, and automation solutions tailored to the needs of modern Indian businesses.
           </p>
         </div>
 
@@ -98,9 +44,9 @@ export default function Services() {
             },
           }}
         >
-          {displayedServices.map((service) => (
+          {serviceDetails.map((service) => (
             <motion.div
-              key={service.title}
+              key={service.id}
               className="group bg-white rounded-xl p-6 border border-gray-200 hover:shadow-lg transition-all duration-500 relative overflow-hidden"
               variants={{
                 hidden: { opacity: 0, y: 40 },
@@ -121,12 +67,12 @@ export default function Services() {
                 </h3>
                 
                 <p className="text-gray-600 leading-relaxed text-sm mb-4 font-heading">
-                  {service.description}
+                  {service.summary}
                 </p>
                 
                 <div className="pt-4 border-t border-gray-100 transition-colors" onMouseEnter={(e) => e.currentTarget.style.borderColor = 'var(--color-primary-lighter)'} onMouseLeave={(e) => e.currentTarget.style.borderColor = ''}>
-                  <Link href="#contact" className="inline-flex items-center font-heading font-semibold text-sm transition-colors" style={{ color: 'var(--color-brand)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-brand-dark)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-brand)'}>
-                    Learn More
+                  <Link href={`/services#${service.id}`} className="inline-flex items-center font-heading font-semibold text-sm transition-colors" style={{ color: 'var(--color-brand)' }} onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-brand-dark)'} onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-brand)'}>
+                    Explore Details
                     <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                     </svg>
@@ -136,23 +82,20 @@ export default function Services() {
             </motion.div>
           ))}
         </motion.div>
-
-        {!showAll && (
-          <div className="text-center">
-            <motion.button
-              onClick={() => setShowAll(true)}
+        <div className="text-center">
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }} className="inline-flex">
+            <Link
+              href="/services"
               className="inline-flex items-center px-8 py-4 text-white rounded-xl font-heading font-semibold transition-all transform shadow-lg hover:shadow-2xl"
               style={{ background: 'linear-gradient(to right, var(--color-brand), var(--color-brand-dark))' }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.98 }}
             >
-              View All Services
+              View Complete Service Catalog
               <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-            </motion.button>
-          </div>
-        )}
+            </Link>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
