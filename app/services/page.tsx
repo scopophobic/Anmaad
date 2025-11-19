@@ -1,15 +1,18 @@
 import Link from 'next/link';
 import { serviceDetails } from '../lib/serviceContent';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 export const metadata = {
   title: 'Services | ANMAAD',
   description:
-    'Explore ANMAAD’s in-depth accounting, compliance, automation, payroll, and export documentation services tailored for Indian businesses.',
+    "Explore ANMAAD's in-depth accounting, compliance, automation, payroll, and export documentation services tailored for Indian businesses.",
 };
 
 export default function ServicesPage() {
   return (
     <main className="bg-gray-50">
+      <Header />
       <section className="relative overflow-hidden py-20 bg-white">
         <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, var(--color-brand) 1px, transparent 0)', backgroundSize: '120px 120px' }} />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -93,6 +96,7 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

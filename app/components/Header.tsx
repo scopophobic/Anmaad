@@ -41,7 +41,7 @@ export default function Header() {
               ANMAAD
             </span>
             <span className="hidden sm:block text-sm text-gray-600 font-medium">
-              Accounting & Tax Services
+              Associates
             </span>
           </Link>
 
